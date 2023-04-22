@@ -9,8 +9,8 @@ module maheredia_arbiter_game
 );
 
 //Local parameters:
-localparam CLOCK_FREQ      = 1000,
-localparam PRESCALER_COUNT = CLOCK_FREQ/4
+localparam CLOCK_FREQ      = 1000;
+localparam PRESCALER_COUNT = CLOCK_FREQ/4;
 
 //I/O ports renaming:
 wire       player_1_in_n  ;
