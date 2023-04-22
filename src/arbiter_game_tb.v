@@ -1,7 +1,7 @@
 `timescale 1 ns/100 ps
 `include "arbiter_game.v"
 
-module arbiter_game_tb();
+module maheredia_arbiter_game();
 
 //Local parameters:
 localparam PER2            = 41.66;
@@ -82,7 +82,7 @@ end
 initial 
 begin
     $dumpfile("wf.vcd");
-    $dumpvars(0, arbiter_game_tb);
+    $dumpvars(0, maheredia_arbiter_game);
     test_req1_in  = $urandom(seed)%2;
     test_req2_in  = $urandom(seed)%2;
 

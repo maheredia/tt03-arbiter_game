@@ -2,33 +2,33 @@
 `include "countdown.v"
 `include "winner.v"
 
-module arbiter_game 
+module maheredia_arbiter_game 
 #(
-  parameter CLOCK_FREQ      = 12000000,
+  parameter CLOCK_FREQ      = 1000,
   parameter PRESCALER_COUNT = CLOCK_FREQ/4
 )
 (
-  //Entradas
-  input wire req1_in,
-  input wire req2_in,
+  //Inputs
+  input wire player_1_in_n,
+  input wire player_2_in_n,
   input wire rst_in_n,
   input wire clk,
-  //Salidas
+  //Outputs
   output reg [3:0] leds_out
 );
 
-//Lógica para manejo de leds
+//Logic for LED control
 wire cd_done;
 wire [3:0] cd_leds_o;
 wire w_done;
 wire [3:0] w_leds_o;
 wire req1;
 wire req2;
-assign req1 = ~req1_in;
-assign req2 = ~req2_in;
+assign req1 = ~player_1_in_n;
+assign req2 = ~player_2_in_n;
 wire [3:0] leds_mux;
 
-//Salidas de la FSM
+//FSM outputs
 wire gnt1;
 wire gnt2;
 wire cd_rst;
@@ -36,7 +36,7 @@ wire w_rst;
 wire leds_rst;
 wire leds_sel;
 
-//Salidas
+//Outputs
 always @ (posedge clk)
 begin
     if(leds_rst)
@@ -45,7 +45,7 @@ begin
         leds_out <= leds_mux;
 end
 
-//Mux de salida para LEDs
+//Output MUX for LEDs
 assign leds_mux = (leds_sel) ? (w_leds_o) : (cd_leds_o);
 
 //Countdown block

@@ -5,10 +5,12 @@ project:
 
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
-#  source_files:        
-#    - counter.v
-#    - decoder.v
-#  top_module:  "seven_segment_seconds"      # put the name of your top module here, make it unique by prepending your github username
+  source_files:        
+    - arbiter_game.v
+    - arbiter_game_fsm.v
+    - countdown.v
+    - winner.v
+  top_module:  "maheredia_arbiter_game" # put the name of your top module here, make it unique by prepending your github username
 
 # Keep a track of the submission yaml
 yaml_version: 3.0
@@ -18,10 +20,10 @@ yaml_version: 3.0
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       ""      # Your name
-  title:        ""      # Project title
-  language:     "Wokwi" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  ""      # Short description of what your project does
+  author:       "Martin A. Heredia"
+  title:        "Arbiter Game"
+  language:     "Verilog"
+  description:  "This is a game for 2 players. After a countdown, the player who press the his/her button first wins. Countdown and winner should be displayed in output leds."
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
@@ -33,29 +35,29 @@ documentation:
 
 # A description of what the inputs do
   inputs:               
-    - clock
-    - reset
-    - none
-    - none
+    - clk
+    - rst_in_n
+    - player_1_in_n
+    - player_2_in_n
     - none
     - none
     - none
     - none
 # A description of what the outputs do
   outputs:
-    - segment a
-    - segment b
-    - segment c
-    - segment d
-    - segment e
-    - segment f
-    - segment g
-    - dot
+    - leds_out[0] / segment a
+    - leds_out[1] / segment b
+    - leds_out[2] / segment c
+    - leds_out[3] / segment d
+    - none
+    - none
+    - none
+    - none
 
 # The following fields are optional
-  tag:          ""      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
-  external_hw:  ""      # Describe any external hardware needed
+  tag:          "educational, game, FSM, counters, shiftreg, sequential"
+  external_hw:  "Pushbuttons with debounce circuit. Active low. 4 LEDs connected to outputs."
   discord:      ""      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
   doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
-  clock_hz:     0       # Clock frequency in Hz (if required)
+  clock_hz:     1000    # Clock frequency in Hz (if required)
   picture:      ""      # relative path to a picture in your repository
