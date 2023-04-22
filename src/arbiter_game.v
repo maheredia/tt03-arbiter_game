@@ -1,6 +1,6 @@
-`include "arbiter_game_fsm.v"
-`include "countdown.v"
-`include "winner.v"
+//`include "arbiter_game_fsm.v"
+//`include "countdown.v"
+//`include "winner.v"
 
 module maheredia_arbiter_game 
 (
