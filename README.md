@@ -31,6 +31,9 @@ This is a 2 players game, where every player has an active low pushbutton assign
 
 ![](docs/win2.gif)
 
+## GDS render
+
+![gds_render](docs/gds_render.png)
 
 ## More about EDU-CIAA-FPGA project:
 
