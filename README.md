@@ -13,7 +13,7 @@ The purpose of the game is to introduce students to sequential logic by implemen
 
 ## Block diagram
 
-![arbiter_game_bd](docs/arbiter_game_bd.svg)
+![arbiter_game_bd](docs/arbiter_game_bd.png)
 
 ## Game description
 
