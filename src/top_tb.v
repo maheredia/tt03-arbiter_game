@@ -1,11 +1,12 @@
 `timescale 1 ns/100 ps
-`include "arbiter_game.v"
+`define SIMULATION
+`include "top.v"
 
-module maheredia_arbiter_game();
+module top_tb();
 
 //Local parameters:
-localparam PER2            = 41.66;
-localparam CLOCK_FREQ      = 40; 
+localparam CLOCK_FREQ      = 1000; 
+localparam PER2            = (1e9)/(2*CLOCK_FREQ);
 localparam PRESCALER_COUNT = CLOCK_FREQ/4;
 localparam TIMEOUT         = PRESCALER_COUNT*50;
 
@@ -15,6 +16,7 @@ reg        test_req2_in  ;
 reg        test_rst_in_n ;
 reg        test_clk      ;
 wire [3:0] test_leds_out ;
+wire [7:0] test_io_out   ;
 
 //Internal signals:
 integer toggle_count = 0;
@@ -31,19 +33,12 @@ wire [3:0] w_verif;
 reg  [3:0] w_verif_dly = 4'b0000;
 
 //DUT:
-arbiter_game 
-#(
-    .CLOCK_FREQ      ( CLOCK_FREQ      ),
-    .PRESCALER_COUNT ( PRESCALER_COUNT )
-)
-dut
+maheredia_arbiter_game dut
 (
-    .req1_in   ( test_req1_in  ),
-    .req2_in   ( test_req2_in  ),
-    .rst_in_n  ( test_rst_in_n ),
-    .clk       ( test_clk      ),
-    .leds_out  ( test_leds_out )
+    .io_in   ( {4'b0000, test_req2_in, test_req1_in, test_rst_in_n, test_clk} ),
+    .io_out  ( test_io_out  )
 );
+assign test_leds_out = test_io_out[3:0];
 
 //Verification logic
 assign cd_steps[4] = 4'b1111;
@@ -82,7 +77,7 @@ end
 initial 
 begin
     $dumpfile("wf.vcd");
-    $dumpvars(0, maheredia_arbiter_game);
+    $dumpvars(0, top_tb);
     test_req1_in  = $urandom(seed)%2;
     test_req2_in  = $urandom(seed)%2;
 

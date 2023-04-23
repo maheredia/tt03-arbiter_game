@@ -1,13 +1,13 @@
 module arbiter_game_fsm
 (
-  //Entradas
+  //Inputs
   input wire req1,
   input wire req2,
   input wire cd_done,
   input wire w_done,
   input wire rst_in_n,
   input wire clk,
-  //Salidas
+  //Outputs
   output gnt1_out,
   output gnt2_out,
   output cd_rst_out,
@@ -16,10 +16,10 @@ module arbiter_game_fsm
   output leds_sel_out
 );
 
-//Bits de representacion de estado
+//Number of bits to represent FSM states
 parameter N_BITS_STATE = 3;
 
-//Salidas de la FSM
+//FSM outputs
 reg gnt1;
 reg gnt2;
 reg cd_rst;
@@ -27,13 +27,13 @@ reg w_rst;
 reg leds_rst;
 reg leds_sel;
 
-//Estado actual
+//Current state
 reg[N_BITS_STATE-1:0] state;
 
-//Proximo estado
+//Next state
 reg[N_BITS_STATE-1:0] next_state;
 
-//Estados del sistema
+//FSM states
 localparam RESET     = 3'b111 ;
 localparam COUNTDOWN = 3'b110 ;
 localparam IDLE      = 3'b000 ;
@@ -43,7 +43,7 @@ localparam WINNER_1  = 3'b011 ;
 localparam WINNER_2  = 3'b100 ;
 localparam GAME_END  = 3'b101 ;
 
-//Salidas
+//Outputs
 assign gnt1_out     = gnt1     ;    
 assign gnt2_out     = gnt2     ;    
 assign cd_rst_out   = cd_rst   ;  
@@ -51,10 +51,9 @@ assign w_rst_out    = w_rst    ;
 assign leds_rst_out = leds_rst ;
 assign leds_sel_out = leds_sel ;
 
-//Definicion combinacional del próximo estado
+//Combinational definition of next state
 always @(*) begin
 
-   //Asignación de próximo estado
    case (state)
       
       RESET : begin
@@ -114,12 +113,11 @@ always @(*) begin
          next_state = GAME_END;
       end
 
-      //Caso por default
       default : next_state = RESET;
    endcase
 end
 
-//Actualizacion sincronica del estado (bloque constante para todas las FSM)
+//Internal state
 always @(negedge rst_in_n or posedge clk) begin
    if (!rst_in_n) begin
       state <= RESET;
@@ -128,7 +126,7 @@ always @(negedge rst_in_n or posedge clk) begin
    end
 end
 
-//Definicion combinacional de las salidas segun el estado actual (Maquina de Moore)
+//Combinational definition of FSM outputs
 always @(*) begin
    
    case (state)

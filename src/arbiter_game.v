@@ -1,33 +1,33 @@
-//`include "arbiter_game_fsm.v"
-//`include "countdown.v"
-//`include "winner.v"
+`ifdef SIMULATION
+`include "arbiter_game_fsm.v"
+`include "countdown.v"
+`include "winner.v"
+`endif
 
-module maheredia_arbiter_game 
+module arbiter_game 
+#(
+  parameter CLOCK_FREQ      = 12000000,
+  parameter PRESCALER_COUNT = CLOCK_FREQ/4
+)
 (
-  input [7:0] io_in,
-  output [7:0] io_out
+  //Inputs
+  input wire req1_in,
+  input wire req2_in,
+  input wire rst_in_n,
+  input wire clk,
+  //Outputs
+  output reg [3:0] leds_out
 );
 
-//Local parameters:
-localparam CLOCK_FREQ      = 1000;
-localparam PRESCALER_COUNT = CLOCK_FREQ/4;
-
-//I/O ports renaming:
-wire       player_1_in_n  ;
-wire       player_2_in_n  ;
-wire       rst_in_n       ;
-wire       clk            ;
-reg  [3:0] leds_out       ;
-
-//Logic for LED control
+//LEDs control logic
 wire cd_done;
 wire [3:0] cd_leds_o;
 wire w_done;
 wire [3:0] w_leds_o;
 wire req1;
 wire req2;
-assign req1 = ~player_1_in_n;
-assign req2 = ~player_2_in_n;
+assign req1 = ~req1_in;
+assign req2 = ~req2_in;
 wire [3:0] leds_mux;
 
 //FSM outputs
@@ -38,12 +38,6 @@ wire w_rst;
 wire leds_rst;
 wire leds_sel;
 
-//Input ports connections:
-assign clk           = io_in[0];
-assign rst_in_n      = io_in[1];
-assign player_1_in_n = io_in[2];
-assign player_2_in_n = io_in[3];
-
 //Outputs
 always @ (posedge clk)
 begin
@@ -53,9 +47,7 @@ begin
         leds_out <= leds_mux;
 end
 
-assign io_out        = {4'b0000,leds_out};
-
-//Output MUX for LEDs
+//LEDs output MUX
 assign leds_mux = (leds_sel) ? (w_leds_o) : (cd_leds_o);
 
 //Countdown block

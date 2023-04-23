@@ -12,15 +12,15 @@ module winner
     output reg [3:0] leds_out
 );
 
-//Parámetros locales
+//Local parameters
 localparam N_BITS_PRESCALER    = $clog2(PRESCALER_COUNT);
 localparam N_BITS_TIMEOUT_CNTR = 4;
-//Contador prescaler
+//Prescaler counter
 reg [N_BITS_PRESCALER-1:0] prescaler_cntr;
 reg prescaler_tc;
-//Contador timeout
+//Timeout counter
 reg [N_BITS_TIMEOUT_CNTR-1:0] timeout_cntr;
-//Registro de desplazamiento
+//Shift register
 reg [3:0] shift_reg;
 
 //Prescaler
@@ -46,7 +46,7 @@ begin
     end
 end
 
-//Registro de desplazamiento
+//Shift register
 always @ (posedge clk, posedge reset)
 begin
     if(reset)
@@ -69,7 +69,7 @@ begin
         timeout_cntr <= timeout_cntr+1;
 end
 
-//Salidas
+//Outputs
 always @ (posedge clk, posedge reset)
 begin
     if(reset)

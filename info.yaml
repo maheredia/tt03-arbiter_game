@@ -5,7 +5,8 @@ project:
 
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
-  source_files:        
+  source_files:       
+    - top.v 
     - arbiter_game.v
     - arbiter_game_fsm.v
     - countdown.v
@@ -36,9 +37,9 @@ documentation:
 # A description of what the inputs do
   inputs:               
     - clk
-    - rst_in_n
-    - player_1_in_n
-    - player_2_in_n
+    - rst_in_n      (active low)
+    - player_1_in_n (active low)
+    - player_2_in_n (active low)
     - none
     - none
     - none
@@ -57,7 +58,7 @@ documentation:
 # The following fields are optional
   tag:          "educational, game, FSM, counters, shiftreg, sequential"
   external_hw:  "Pushbuttons with debounce circuit. Active low. 4 LEDs connected to outputs."
-  discord:      ""      # Your discord handle, used for communication and automatically assigning tapeout role after a submission TODO
-  doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository TODO
-  clock_hz:     1000    # Clock frequency in Hz (if required) TODO
-  picture:      ""      # relative path to a picture in your repository TODO
+  discord:      ""   # Your discord handle, used for communication and automatically assigning tapeout role after a submission TODO
+  doc_link:     ""   # URL to longer form documentation, eg the README.md in your repository TODO
+  clock_hz:     1000 # Clock frequency in Hz (if required) TODO
+  picture:      ""   # relative path to a picture in your repository TODO

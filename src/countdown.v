@@ -10,12 +10,12 @@ module countdown
     output reg [3:0] leds_out
 );
 
-//Parámetros locales
+//Local parameters
 localparam N_BITS_PRESCALER = $clog2(PRESCALER_COUNT);
-//Contador prescaler
+//Prescaler counter
 reg [N_BITS_PRESCALER-1:0] prescaler_cntr;
 reg prescaler_tc;
-//Lógica de cuenta regresiva
+//Countdown logic
 reg [2:0] cd_prescaler;
 wire      cd_clk      ;
 reg [4:0] cd_shift_reg;
@@ -43,7 +43,7 @@ begin
     end
 end
 
-//Prescaler para máscara de cuenta regresiva
+//Additional prescaler for countdown mask
 always @ (posedge clk, posedge reset)
 begin
     if(reset)
@@ -52,7 +52,7 @@ begin
         cd_prescaler <= cd_prescaler+1;
 end
 
-//Máscara de cuenta regresiva (registro que desplaza ceros!)
+//Countdown mask (register which shifts zeroes!)
 always @ (posedge clk, posedge reset)
 begin
     if(reset)
@@ -61,7 +61,7 @@ begin
         cd_shift_reg <= {1'b0,cd_shift_reg[4:1]};
 end
 
-//Salidas
+//Outputs
 always @ (posedge clk, posedge reset)
 begin
     if(reset)
