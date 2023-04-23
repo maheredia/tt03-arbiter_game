@@ -64,7 +64,7 @@ documentation:
 # The following fields are optional
   tag:          "educational, game, FSM, counters, shiftreg, sequential"
   external_hw:  "2 active low pushbuttons for players + 1 active low pushbutton for reset. 4 LEDs connected to outputs."
-  discord:      "720308211374227486" # Your discord handle, used for communication and automatically assigning tapeout role after a submission
+  discord:      "maheredia#7961" # Your discord handle, used for communication and automatically assigning tapeout role after a submission
   doc_link:     "https://github.com/maheredia/tt03-arbiter_game/blob/main/README.md"
   clock_hz:     1000 # Clock frequency in Hz
   picture:      "../docs/arbiter_game_bd.png"   # relative path to a picture in your repository
