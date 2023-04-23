@@ -67,4 +67,4 @@ documentation:
   discord:      "maheredia#7961" # Your discord handle, used for communication and automatically assigning tapeout role after a submission
   doc_link:     "https://github.com/maheredia/tt03-arbiter_game/blob/main/README.md"
   clock_hz:     1000 # Clock frequency in Hz
-  picture:      "../docs/arbiter_game_bd.png"   # relative path to a picture in your repository
+  picture:      "docs/arbiter_game_bd.png"   # relative path to a picture in your repository
