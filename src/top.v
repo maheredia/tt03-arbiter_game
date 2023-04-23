@@ -1,6 +1,7 @@
 `ifdef SIMULATION
 `include "arbiter_game.v"
 `endif
+`default_nettype none
 
 module maheredia_arbiter_game 
 (
