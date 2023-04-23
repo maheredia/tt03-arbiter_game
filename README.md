@@ -6,7 +6,7 @@
 
 This is an implementation of a simple 2 players game based on the educational example [arbiter](https://gitlab.com/educiaafpga/ejemplos/-/tree/master/Ejemplos_Base/14-Arbiter) from the [EDU-CIAA-FPGA](https://gitlab.com/educiaafpga/ejemplos/-/blob/master/PROYECTO_EDU_CIAA_FPGA.md) public repository. 
 
-The purpose of the game is to introduce students to sequential logic by implementing common digital blocks like counters, registers, shift registers and finite state machines:
+The purpose of the game is to introduce students to sequential logic by implementing common digital blocks like: counters, registers, shift registers and finite state machines.
 
 ![sequential_circuit](docs/sequential_circuit.png)
 
@@ -15,15 +15,20 @@ The purpose of the game is to introduce students to sequential logic by implemen
 
 ![arbiter_game_bd](docs/arbiter_game_bd.png)
 
+## States diagram (sketch)
+
+![states_diagram](docs/states_diagram.png)
+
 ## Game description
 
 This is a 2 players game, where every player has an active low pushbutton assigned (**req1_in** and **req2_in** inputs to top level). After applying reset to the circuit, a countdown will be displayed at the output ports (ideally connected to some LEDs). Then, when the last LED stops toggling, the players will press the buttons. The first player to press the button wins and this will be displayed in output LEDs:
 
-![](docs/win1.gif)
 >Player 1 wins
+![](docs/win1.gif)
 
-![](docs/win2.gif)
 >Player 2 wins
+![](docs/win2.gif)
+
 
 ## More about EDU-CIAA-FPGA project:
 
