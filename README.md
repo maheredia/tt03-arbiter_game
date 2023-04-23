@@ -13,16 +13,16 @@ The purpose of the game is to introduce students to sequential logic by implemen
 
 ## Block diagram
 
-![arbiter_game_bd](arbiter_game_bd.svg)
+![arbiter_game_bd](docs/arbiter_game_bd.svg)
 
 ## Game description
 
 This is a 2 players game, where every player has an active low pushbutton assigned (**req1_in** and **req2_in** inputs to top level). After applying reset to the circuit, a countdown will be displayed at the output ports (ideally connected to some LEDs). Then, when the last LED stops toggling, the players will press the buttons. The first player to press the button wins and this will be displayed in output LEDs:
 
-![player1_wins](docs/win1.giff)
+![player1_wins](docs/win1.gif)
 >Player 1 wins
 
-![player2_wins](docs/win2.giff)
+![player2_wins](docs/win2.gif)
 >Player 2 wins
 
 ## More about EDU-CIAA-FPGA project:
